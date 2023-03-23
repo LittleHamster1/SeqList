@@ -9,11 +9,11 @@ typedef long Type;
 class SeqList
 {
 public:
-	SeqList(int n = MAXSIZE);   //������һ�������Ŀձ�
-	SeqList(const SeqList& l);  //���
+	SeqList(int n = MAXSIZE);   //创建有一定容量的空表
+	SeqList(const SeqList& l);  //深拷贝
 	~SeqList() { delete[] date; };
-	SeqList& operator=(const SeqList& l); //�ֵ
-	int InsertRear(const Type& item);   //��ĩβ����Ԫ��,����״̬
+	SeqList& operator=(const SeqList& l); //深赋值
+	int InsertRear(const Type& item);   //在末尾插入元素,返回状态
 	int Insert(int id, const Type& item);
 	void Erase(int id);
 	void Erase(Type* itr);
@@ -34,7 +34,8 @@ public:
 private:
 	int size;
 	int max;
-	Type* date;
+	Type* date;  //这一块如果直接用指针来指向一段内存来表示数组的话，编译器可能会报错，因为编译器无法确定这段内存的大小
+	            //本处由于老师在出题时给出的类声明如此于是得以保留
 };
 
 
